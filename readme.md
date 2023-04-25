@@ -1,4 +1,4 @@
-golang version: 1.14 
+golang version: 1.18 
 
 nếu chưa tạo file go.mod thì có thể tạo bằng cách:
 tạo file .mod :

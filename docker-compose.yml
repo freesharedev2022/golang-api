@@ -1,0 +1,35 @@
+version: '3.0'
+services:
+  backend:
+    container_name: golang-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - mariadb
+    environment:
+      MYSQL_DB: go_app
+      MYSQL_HOST: mariadb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 12345678
+      MYSQL_PORT: 3306
+      SECRET_JWT: 12345678
+    network_mode: bridge
+  mariadb:
+    image: mariadb:latest
+    container_name: backend_database
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: go_app
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 12345678
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    network_mode: bridge
