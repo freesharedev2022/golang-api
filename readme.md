@@ -3,7 +3,7 @@ golang version: 1.18
 nếu chưa tạo file go.mod thì có thể tạo bằng cách:
 tạo file .mod :
 ```
-go mod init goelster
+go mod init golang-api
 ```
 
 cài đặt thư viện: 

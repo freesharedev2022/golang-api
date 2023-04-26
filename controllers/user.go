@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"golang-api/middleware"
 	"golang-api/models"
 	"net/http"
@@ -85,6 +86,7 @@ func UpdateUser(c *gin.Context) {
 		return
 	}
 	var id = getValueOf(claims, "Id")
+	id = fmt.Sprintf("%d", id)
 	if err := models.DB.Where("id = ?", id).First(&user).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
